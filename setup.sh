@@ -132,4 +132,5 @@ echo "  • bot_stats.json (empty stats)"
 echo "  • channels_tracker.json (your channels)"
 echo "  • error.log (empty)"
 echo ""
-echo "🚀
+echo "🚀 Now push to GitHub and deploy to Render.com!"
+echo "============================================"
