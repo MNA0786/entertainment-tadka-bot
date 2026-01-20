@@ -1,25 +1,84 @@
-# CakePHP 3
+# ============================================
+# 🐳 ENTERTAINMENT TADKA BOT - GIT IGNORE
+# ============================================
 
-/vendor/*
-/config/app.php
+# 🗂️ DEPENDENCIES
+/vendor/
+/node_modules/
+/composer.lock
+/package-lock.json
+/yarn.lock
 
-/tmp/cache/models/*
-!/tmp/cache/models/empty
-/tmp/cache/persistent/*
-!/tmp/cache/persistent/empty
-/tmp/cache/views/*
-!/tmp/cache/views/empty
-/tmp/sessions/*
-!/tmp/sessions/empty
-/tmp/tests/*
-!/tmp/tests/empty
+# 📁 ENVIRONMENT
+/.env
+/.env.local
+/.env.*.local
+/.env.production
+/.env.development
+.env.example
+!.env.example
 
-/logs/*
-!/logs/empty
+# 🐳 DOCKER
+docker-compose.override.yml
+/docker-data/
 
-# CakePHP 2
+# 📊 DATABASE FILES
+*.db
+*.sqlite
+*.sqlite3
 
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+# 📝 LOGS
+*.log
+/logs/
+/error.log
+
+# 💾 BACKUPS
+/backups/*.csv
+/backups/*.json
+/backups/*.bak
+!/backups/.gitkeep
+
+# 📦 BUILDS
+/build/
+/dist/
+*.exe
+*.dll
+
+# 🖥️ OS FILES
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# 🔧 IDE FILES
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 🐛 DEBUG FILES
+php_debug.log
+xdebug.log
+
+# 📄 TEMPORARY FILES
+*.tmp
+*.temp
+/tmp/
+/temp/
+
+# 📊 DATA FILES (Actual data, not templates)
+/movies.csv
+/users.json
+/bot_stats.json
+/channels_tracker.json
+/error.log
+
+# 📁 BUT KEEP EMPTY VERSIONS (templates)
+!/movies.csv.empty
+!/users.json.empty
+!/bot_stats.json.empty
+!/channels_tracker.json.empty
+!/error.log.empty
+
+# 🚀 RENDER SPECIFIC
+.render/
