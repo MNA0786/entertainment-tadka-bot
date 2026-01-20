@@ -39,8 +39,11 @@ $port = getenv('PORT') ?: '80';
 // Webhook URL automatically set
 $webhook_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-// Security - All credentials environment variables se lo
+// Change this line (around line 35):
 $bot_token = getenv('BOT_TOKEN') ?: '8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU';
+
+// To this:
+$bot_token = '8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU';
 
 // Validate BOT_TOKEN
 if (empty($bot_token) || $bot_token == '8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU') {
