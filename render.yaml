@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: entertainment-tadka-bot
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    
+    # Environment Variables
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+        description: "Telegram Bot Token from @BotFather"
+      - key: PORT
+        value: "10000"
+    
+    # Health check
+    healthCheckPath: /
+    
+    # Auto deploy
+    autoDeploy: true
+    plan: free
+    
+    # Headers
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
