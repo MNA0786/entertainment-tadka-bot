@@ -1,84 +1,29 @@
-# ============================================
-# 🐳 ENTERTAINMENT TADKA BOT - GIT IGNORE
-# ============================================
-
-# 🗂️ DEPENDENCIES
-/vendor/
-/node_modules/
-/composer.lock
-/package-lock.json
-/yarn.lock
-
-# 📁 ENVIRONMENT
-/.env
-/.env.local
-/.env.*.local
-/.env.production
-/.env.development
-.env.example
-!.env.example
-
-# 🐳 DOCKER
+# Docker related
+docker/
 docker-compose.override.yml
-/docker-data/
 
-# 📊 DATABASE FILES
-*.db
-*.sqlite
-*.sqlite3
+# Environment files
+.env
+.env.local
 
-# 📝 LOGS
+# Log files
 *.log
 /logs/
-/error.log
 
-# 💾 BACKUPS
+# Backup files (actual data, not directory)
 /backups/*.csv
 /backups/*.json
 /backups/*.bak
 !/backups/.gitkeep
 
-# 📦 BUILDS
-/build/
-/dist/
-*.exe
-*.dll
-
-# 🖥️ OS FILES
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-
-# 🔧 IDE FILES
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# 🐛 DEBUG FILES
-php_debug.log
-xdebug.log
-
-# 📄 TEMPORARY FILES
-*.tmp
-*.temp
-/tmp/
-/temp/
-
-# 📊 DATA FILES (Actual data, not templates)
+# Data files (templates ko chhod ke)
 /movies.csv
 /users.json
 /bot_stats.json
 /channels_tracker.json
 /error.log
 
-# 📁 BUT KEEP EMPTY VERSIONS (templates)
+# But keep empty templates (agar banaye to)
 !/movies.csv.empty
 !/users.json.empty
 !/bot_stats.json.empty
-!/channels_tracker.json.empty
-!/error.log.empty
-
-# 🚀 RENDER SPECIFIC
-.render/
