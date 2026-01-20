@@ -1,11 +1,22 @@
 FROM php:8.1-apache
 
-# Install dependencies
+# ============================================
+# 🔧 INSTALL DEPENDENCIES WITH libzip-dev
+# ============================================
+
 RUN apt-get update && apt-get install -y \
     curl \
+    wget \
     zip \
     unzip \
-    && docker-php-ext-install zip
+    libzip-dev \
+    && docker-php-ext-configure zip \
+    && docker-php-ext-install zip \
+    && docker-php-ext-enable zip
+
+# ============================================
+# 📁 APACHE CONFIGURATION
+# ============================================
 
 # Enable Apache modules
 RUN a2enmod rewrite headers
@@ -13,19 +24,33 @@ RUN a2enmod rewrite headers
 # Set working directory
 WORKDIR /var/www/html
 
+# ============================================
+# 📂 COPY APPLICATION FILES
+# ============================================
+
 # Copy all files
 COPY . .
 
-# Set permissions
+# ============================================
+# 🔐 FILE PERMISSIONS
+# ============================================
+
+# Set proper permissions for Render.com
 RUN chown -R www-data:www-data /var/www/html \
     && chmod 755 /var/www/html \
-    && chmod 666 /var/www/html/*.csv /var/www/html/*.json /var/www/html/*.log 2>/dev/null || true \
+    && find /var/www/html -name "*.csv" -o -name "*.json" -o -name "*.log" | xargs chmod 666 2>/dev/null || true \
     && touch /var/www/html/error.log \
-    && chmod 666 /var/www/html/error.log \
-    && mkdir -p /var/www/html/backups \
+    && chmod 666 /var/www/html/error.log
+
+# Create writable directories
+RUN mkdir -p /var/www/html/backups \
     && chmod 777 /var/www/html/backups
 
-# PHP configuration
+# ============================================
+# ⚙️ PHP CONFIGURATION
+# ============================================
+
+# Set PHP settings for Render.com
 RUN echo "upload_max_filesize = 100M" >> /usr/local/etc/php/conf.d/uploads.ini \
     && echo "post_max_size = 100M" >> /usr/local/etc/php/conf.d/uploads.ini \
     && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/uploads.ini \
@@ -34,12 +59,19 @@ RUN echo "upload_max_filesize = 100M" >> /usr/local/etc/php/conf.d/uploads.ini \
     && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/uploads.ini \
     && echo "date.timezone = Asia/Kolkata" >> /usr/local/etc/php/conf.d/uploads.ini
 
-# Expose port (Render.com will provide PORT)
-EXPOSE $PORT
+# ============================================
+# 🏃 HEALTH CHECK
+# ============================================
 
-# Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:$PORT/ || exit 1
+
+# ============================================
+# 🚀 STARTUP COMMANDS
+# ============================================
+
+# Expose port (Render.com will set PORT)
+EXPOSE $PORT
 
 # Start Apache
 CMD ["apache2-foreground"]
