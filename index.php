@@ -39,15 +39,56 @@ $port = getenv('PORT') ?: '80';
 // Webhook URL automatically set
 $webhook_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-// Change this line (around line 35):
-$bot_token = getenv('BOT_TOKEN') ?: '8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU';
+// BOT_TOKEN configuration
+$bot_token = getenv('BOT_TOKEN'); // Try environment variable first
 
-// To this:
-$bot_token = '8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU';
+if (empty($bot_token)) {
+    // Fallback to default for testing
+    $bot_token = '8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU';
+    
+    // Show warning but don't die
+    if (php_sapi_name() !== 'cli') {
+        echo "<!-- ⚠️ WARNING: Using default BOT_TOKEN. Please set BOT_TOKEN environment variable on Render.com -->";
+    }
+    error_log("WARNING: BOT_TOKEN not set in environment, using default");
+}
 
-// Validate BOT_TOKEN
-if (empty($bot_token) || $bot_token == '8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU') {
-    die("❌ BOT_TOKEN environment variable set nahi hai. Render.com dashboard mein set karo.");
+// Basic validation
+if (empty($bot_token)) {
+    http_response_code(500);
+    die("
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>❌ Bot Configuration Error</title>
+            <style>
+                body { font-family: Arial, sans-serif; padding: 20px; background: #f8d7da; color: #721c24; }
+                .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <h1>❌ Bot Configuration Error</h1>
+                <p>BOT_TOKEN environment variable is not set.</p>
+                <h3>How to fix:</h3>
+                <ol>
+                    <li>Go to <a href='https://render.com' target='_blank'>Render.com</a></li>
+                    <li>Open your service: <strong>entertainment-tadka-bot</strong></li>
+                    <li>Click on <strong>Environment</strong> in left sidebar</li>
+                    <li>Add Environment Variable:
+                        <ul>
+                            <li><strong>Key:</strong> BOT_TOKEN</li>
+                            <li><strong>Value:</strong> 8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>Save Changes</strong></li>
+                    <li>Click <strong>Manual Deploy</strong> → <strong>Deploy latest commit</strong></li>
+                </ol>
+                <p><a href='https://entertainment-tadka-bot-z4sw.onrender.com/'>↩️ Back to Dashboard</a></p>
+            </div>
+        </body>
+        </html>
+    ");
 }
 
 define('BOT_TOKEN', $bot_token);
