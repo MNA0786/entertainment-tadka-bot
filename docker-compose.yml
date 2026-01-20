@@ -1,0 +1,59 @@
+# ============================================
+# 🐳 DOCKER COMPOSE FOR LOCAL DEVELOPMENT
+# ============================================
+
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: entertainment-tadka-bot
+    ports:
+      - "8080:80"
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN:-8315381064:AAGk0FGVGmB8j5SjpBvW3rD3_kQHe_hyOWU}
+      - PORT=80
+      - RENDER=0
+    volumes:
+      - ./data:/var/www/html/data
+      - ./backups:/var/www/html/backups
+      - ./logs:/var/www/html/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Optional: phpMyAdmin for database management
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: bot-phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  # Optional: MySQL database (if needed later)
+  db:
+    image: mysql:8.0
+    container_name: bot-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=bot_db
+      - MYSQL_USER=bot_user
+      - MYSQL_PASSWORD=bot_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  bot_data:

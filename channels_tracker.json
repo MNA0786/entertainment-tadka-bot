@@ -1,0 +1,72 @@
+{
+  "-1003181705395": {
+    "name": "Movies and Webseries",
+    "emoji": "🎬",
+    "username": "@EntertainmentTadka786",
+    "type": "movie",
+    "total_movies": 0,
+    "last_movie": null,
+    "last_updated": "2024-01-20T12:00:00+05:30",
+    "created": "2024-01-20T12:00:00+05:30"
+  },
+  "-1003251791991": {
+    "name": "Private Channel",
+    "emoji": "🔒",
+    "username": "",
+    "type": "movie",
+    "total_movies": 0,
+    "last_movie": null,
+    "last_updated": "2024-01-20T12:00:00+05:30",
+    "created": "2024-01-20T12:00:00+05:30"
+  },
+  "-1002337293281": {
+    "name": "Backup Channel 2",
+    "emoji": "💾",
+    "username": "",
+    "type": "movie",
+    "total_movies": 0,
+    "last_movie": null,
+    "last_updated": "2024-01-20T12:00:00+05:30",
+    "created": "2024-01-20T12:00:00+05:30"
+  },
+  "-1003614546520": {
+    "name": "Forwarded Channel",
+    "emoji": "🔄",
+    "username": "",
+    "type": "movie",
+    "total_movies": 0,
+    "last_movie": null,
+    "last_updated": "2024-01-20T12:00:00+05:30",
+    "created": "2024-01-20T12:00:00+05:30"
+  },
+  "-1002831605258": {
+    "name": "Threater Print",
+    "emoji": "🎭",
+    "username": "@threater_print_movies",
+    "type": "movie",
+    "total_movies": 0,
+    "last_movie": null,
+    "last_updated": "2024-01-20T12:00:00+05:30",
+    "created": "2024-01-20T12:00:00+05:30"
+  },
+  "-1002964109368": {
+    "name": "ET Backup",
+    "emoji": "📦",
+    "username": "@ETBackup",
+    "type": "movie",
+    "total_movies": 0,
+    "last_movie": null,
+    "last_updated": "2024-01-20T12:00:00+05:30",
+    "created": "2024-01-20T12:00:00+05:30"
+  },
+  "-1003083386043": {
+    "name": "Request Group",
+    "emoji": "💬",
+    "username": "@EntertainmentTadka7860",
+    "type": "request",
+    "total_movies": 0,
+    "last_movie": null,
+    "last_updated": "2024-01-20T12:00:00+05:30",
+    "created": "2024-01-20T12:00:00+05:30"
+  }
+}
